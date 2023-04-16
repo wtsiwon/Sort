@@ -67,16 +67,16 @@ namespace Sort
 
         public static void MergeArray(int[] array, int left, int middle, int right)
         {
-            var leftArrayLength = middle - left + 1;
-            var rightArrayLength = right - middle;
-            var leftTempArray = new int[leftArrayLength];
-            var rightTempArray = new int[rightArrayLength];
+            var leftArrayLength = middle - left + 1;//비교할 첫번째 배열의 길이
+            var rightArrayLength = right - middle;//비교할 두번째 배열의 길이
+            var leftTempArray = new int[leftArrayLength];//비교할 첫번째 배열
+            var rightTempArray = new int[rightArrayLength];//비교할 두번째 배열
             int i, j;
 
             for (i = 0; i < leftArrayLength; ++i)
-                leftTempArray[i] = array[left + i];
+                leftTempArray[i] = array[left + i];//실질적인 값 저장
             for (j = 0; j < rightArrayLength; ++j)
-                rightTempArray[j] = array[middle + 1 + j];
+                rightTempArray[j] = array[middle + 1 + j];//실질적인 값 저장
 
             i = 0;
             j = 0;
@@ -84,24 +84,26 @@ namespace Sort
 
             while (i < leftArrayLength && j < rightArrayLength)
             {
-                if (leftTempArray[i] <= rightTempArray[j])
+                if (leftTempArray[i] <= rightTempArray[j])//왼쪽이 더 작다면
                 {
-                    array[k++] = leftTempArray[i++];
+                    array[k++] = leftTempArray[i++];//왼쪽값를 배열에 저장한다
                 }
                 else
                 {
-                    array[k++] = rightTempArray[j++];
+                    array[k++] = rightTempArray[j++];//아니면 오른쪽값을 배열에 저장
                 }
             }
 
-            while (i < leftArrayLength)
+            //여기에 오게되면 왼쪽이나 오른쪽중 한쪽이 다 없어짐
+
+            while (i < leftArrayLength)//왼쪽이 남아 있는 경우
             {
-                array[k++] = leftTempArray[i++];
+                array[k++] = leftTempArray[i++];//남아있는 값 넣어주기
             }
 
-            while (j < rightArrayLength)
+            while (j < rightArrayLength)//오른쪽이 남아 있는 경우
             {
-                array[k++] = rightTempArray[j++];
+                array[k++] = rightTempArray[j++];//남아 있는 값 넣어주기
             }
         }
     }
